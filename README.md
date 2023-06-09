@@ -28,7 +28,6 @@ Script para instalação rapida de softwares para configurar o ambiente de forma
 
 Além disso, as dependencias do Ubuntu são atualizadas ao executar o script.
 
-
 ## Execução do Script
 Para execução do Script, basta executar o comando abaixo na mesma pasta onde o script está armazenado:
 

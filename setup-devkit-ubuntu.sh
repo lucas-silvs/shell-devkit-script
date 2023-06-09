@@ -94,12 +94,6 @@ wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20B
 # #instala as fontes para utilização no terminal
 run_with_sudo mv *.ttf /home/"$USER"/.fonts
 
-# atualiza o cache das fontes
-fc-cache -f -v
-
-# altera o tema do terminal para MesloLGS NF Regular
-sed -i 's/font = Monospace 10/font = MesloLGS NF 10/g' ~/.config/alacritty/alacritty.yml
-
 # altera fonte do gnome terminal para MesloLGS NF Regular
 sed -i 's/monospace/MesloLGS NF Regular/g' ~/.config/gtk-3.0/settings.ini
 
@@ -110,10 +104,10 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-/home/$USER/.oh-my-zsh/custom}/themes/powerlevel10k
 
 # instala o plugin zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions.git /home/$USER/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 # instala o plugin zsh-syntax-highlighting\
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git /home/$USER/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 # define zs como shell padrão
 run_with_sudo chsh -s "$(which zsh)" "$USER"

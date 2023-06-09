@@ -32,5 +32,5 @@ Além disso, as dependencias do Ubuntu são atualizadas ao executar o script.
 Para execução do Script, basta executar o comando abaixo na mesma pasta onde o script está armazenado:
 
 ```shell
-bash setup-devkit-ubuntu.sh 
+bash main.sh 
 ```

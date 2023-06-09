@@ -16,11 +16,16 @@ sudo apt -y install python3-venv
 sudo apt -y install gnome-shell-extensions
 sudo apt -y install docker.io
 sudo apt -y install docker-compose
+
 curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | sudo tee /usr/share/keyrings/yarnkey.gpg >/dev/null
 sudo apt update
 sudo apt install -y gcc g++ yarn
 curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 sudo apt install -y nodejs
+
+wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
+sudo apt install -y ./discord.deb
+rm discord.deb
 
 # Configura usuário docker para execução sem sudo
 sudo groupadd docker
@@ -34,7 +39,8 @@ sudo snap install kubectl --classic
 sudo snap install intellij-idea-ultimate --classic
 sudo snap install postman
 sudo snap install code --classic
-sudo snap install discord
+
+
 
 # Instala o sdkman
 curl -s "https://get.sdkman.io" | bash

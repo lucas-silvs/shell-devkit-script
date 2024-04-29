@@ -1,7 +1,7 @@
 # shell-devkit-script
-Script para instalação rapida de softwares para configurar o ambiente de forma automatizada via script. Abaixo está a lista de softwares que serão instalados nesse script:
+Script para instalação rapida de softwares para configurar o ambiente de forma automatizada via script. Abaixo está a lista de softwares que serão instalados nesse script (todos na versão mais recente):
 
-- Java 17
+- Java
 - Gradle
 - Maven
 - NodeJs

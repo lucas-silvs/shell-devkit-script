@@ -20,7 +20,7 @@ Script para instalação rapida de softwares para configurar o ambiente de forma
 - IntelliJ IDEA Ultimate (Necessário conta ativa)
 - Visual Code
 - Lens Kubernetes UI
-- _Oh-my-zsh_
+- _Oh-my-zsh_ (opcional)
     - Tema Powerlevel10k
     - Plugin Auto-suggestion
     - Plugin Syntax-highlighting

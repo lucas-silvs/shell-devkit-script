@@ -1,5 +1,19 @@
 #!/bin/bash
 
+# Baixa e instala as fontes do Powerlevel10k
+wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
+wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
+wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
+wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
+mv *.ttf /home/$USER/.fonts
+fc-cache -f -v
+
+# Altera o tema do terminal para MesloLGS NF Regular
+sed -i 's/font = Monospace 10/font = MesloLGS NF 10/g' ~/.config/alacritty/alacritty.yml
+
+# Altera a fonte do GNOME Terminal para MesloLGS NF Regular
+sed -i 's/monospace/MesloLGS NF Regular/g' ~/.config/gtk-3.0/settings.ini
+
 # Instala o Zsh
 sudo apt -y install zsh
 

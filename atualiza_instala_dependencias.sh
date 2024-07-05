@@ -28,11 +28,9 @@ sudo apt install -y ./discord.deb
 rm discord.deb
 
 # Configura usuário docker para execução sem sudo
-sudo groupadd docker
-sudo usermod -aG docker $USER
+groupadd docker
+usermod -aG docker $USER
 
-# Instala o Spotify
-sudo snap install spotify
 sudo snap install dbeaver-ce
 sudo snap install microk8s --classic
 sudo snap install kubectl --classic
@@ -40,10 +38,22 @@ sudo snap install intellij-idea-ultimate --classic
 sudo snap install postman
 sudo snap install code --classic
 
+# instalar spotifyx
+curl -sS https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+sudo apt-get update && sudo apt-get install spotify-client
+
+
 # instalando Chrome
 wget -O chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt -y install ./chrome.deb
-rm chrome.deb   
+rm chrome.deb 
+
+#instalando 1Password
+
+wget -O 1password.deb https://downloads.1password.com/linux/debian/amd64/stable/1password-latest.deb
+sudo apt -y install ./1password.deb
+rm 1password.deb
 
 
 # Instala o sdkman

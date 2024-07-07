@@ -1,18 +1,47 @@
 #!/bin/bash
 
+# Verifica se o dbus-launch está instalado e instala se necessário
+if ! command -v dbus-launch &> /dev/null; then
+    echo "O pacote dbus-x11 não está instalado. Instalando..."
+    sudo apt update
+    sudo apt install -y dbus-x11
+fi
+
 # Baixa e instala as fontes do Powerlevel10k
-wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
-wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
-wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
-wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
-mv *.ttf /home/$USER/.fonts
+wget -q https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
+wget -q https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
+wget -q https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
+wget -q https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
+mkdir -p ~/.local/share/fonts
+mv *.ttf ~/.local/share/fonts
 fc-cache -f -v
 
-# Altera o tema do terminal para MesloLGS NF Regular
-sed -i 's/font = Monospace 10/font = MesloLGS NF 10/g' ~/.config/alacritty/alacritty.yml
+# Inicia uma sessão D-Bus, se necessário
+if [[ -z "$DBUS_SESSION_BUS_ADDRESS" ]]; then
+    eval "$(dbus-launch --sh-syntax)"
+    DBUS_SESSION_LAUNCHED=1
+fi
+
+# Obtém o ID do perfil padrão do GNOME Terminal
+PROFILE_ID=$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d "'")
+
+# Desativa a opção de usar a fonte do sistema
+gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/Terminal/Legacy/Profiles:/:$PROFILE_ID/" use-system-font false
 
 # Altera a fonte do GNOME Terminal para MesloLGS NF Regular
-sed -i 's/monospace/MesloLGS NF Regular/g' ~/.config/gtk-3.0/settings.ini
+gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/Terminal/Legacy/Profiles:/:$PROFILE_ID/" font 'MesloLGS NF 12'
+
+# Verifica se a configuração foi aplicada
+gsettings get "org.gnome.Terminal.Legacy.Profile:/org/gnome/Terminal/Legacy/Profiles:/:$PROFILE_ID/" font
+
+# Finaliza a sessão D-Bus, se necessário
+if [[ -n "$DBUS_SESSION_LAUNCHED" ]]; then
+    kill "$DBUS_SESSION_BUS_PID"
+fi
+
+
+
+
 
 # Instala o Zsh
 sudo apt -y install zsh

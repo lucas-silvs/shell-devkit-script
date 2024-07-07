@@ -3,20 +3,22 @@
 
 # Configura atalhos de teclado
 
-# Configura atalho para abrir pasta pessoal precionando as teclas: Super + E
-gsettings set org.gnome.settings-daemon.plugins.media-keys home "['<Super>e']"
 
-# Configura atalho para abrir o terminal precionando as teclas: Super + T
-gsettings set org.gnome.settings-daemon.plugins.media-keys terminal "['<Super>t']"
+echo "Configurando atalhos"
 
-# Configura atalho para ir para a area de trabalho a direita precionando as teclas: Super + D
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "['<Super>d']"
+# Alterar o atalho para lançar o terminal para Super+T
+gsettings set org.gnome.settings-daemon.plugins.media-keys terminal "['<Super>T']"
+gsettings get org.gnome.settings-daemon.plugins.media-keys terminal
 
-# Configura atalho para ir para a area de trabalho a esquerda precionando as teclas: Super + A
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "['<Super>a']"
 
-# Configura atalho para enviar a janela de trabalho para a direita precionando as teclas: Super + Shift + D
-gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-right "['<Super><Shift>d']"
+# Alterar o atalho para abrir a pasta pessoal para Super+E
+gsettings set org.gnome.settings-daemon.plugins.media-keys home "['<Super>E']"
+gsettings get org.gnome.settings-daemon.plugins.media-keys home
 
-# Configura atalho para enviar a janela de trabalho para a esquerda precionando as teclas: Super + Shift + A
-gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-left "['<Super><Shift>a']"
+echo "Reiniciando gnome-settings-daemon..."
+killall gnome-settings-daemon
+nohup gnome-settings-daemon &
+
+
+echo "Configuração de atalhos concluida."
+

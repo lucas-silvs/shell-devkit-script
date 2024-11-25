@@ -1,0 +1,2 @@
+Conexão bem-sucedida com google.com:443
+Conexão bem-sucedida com example.com:443
